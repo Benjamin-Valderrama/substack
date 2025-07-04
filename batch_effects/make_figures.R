@@ -21,7 +21,7 @@ metadata_separate <- read_tsv("batch_effects/inputs/metadata_error_rates_separat
 ct_separate <- read_tsv("batch_effects/inputs/ct_error_rates_separately.tsv") %>% 
   column_to_rownames("genus")
 
-sort(metadata_separate$sample_id) == sort(colnames(ct_separate))
+metadata_separate$sample_id == colnames(ct_separate)
 ct_separate <- ct_separate[, metadata_separate$sample_id]
 
 
@@ -78,7 +78,8 @@ plot_together <- pheatmap(mat = clr_ct_together,
          legend = FALSE, 
          show_rownames = FALSE, 
          show_colnames = FALSE, 
-         main = "Genera Abundances with Error Rates Learnt Across all Batches")
+         #main = "Genera Abundances with Error Rates Learnt Across all Batches"
+         )
 
 ggsave(plot = plot_together,
        filename = "batch_effects/outputs/error_rates_together.jpg")
@@ -92,7 +93,8 @@ plot_together_combat <- pheatmap(mat = ct_together_combat,
          legend = FALSE, 
          show_rownames = FALSE, 
          show_colnames = FALSE,
-         main = "Genera Abundances with Error Rates Learnt Across all Batches + ComBat")
+         #main = "Genera Abundances with Error Rates Learnt Across all Batches + ComBat"
+         )
 
 ggsave(plot = plot_together_combat,
        filename = "batch_effects/outputs/error_rates_together_and_combat.jpg")
@@ -112,7 +114,8 @@ plot_separate <- pheatmap(mat = clr_ct_separate,
          legend = FALSE, 
          show_rownames = FALSE, 
          show_colnames = FALSE, 
-         main = "Genera Abundances with Different Error Rates Learnt for Each Batch")
+         #main = "Genera Abundances with Different Error Rates Learnt for Each Batch"
+         )
 
 ggsave(plot = plot_separate,
        filename = "batch_effects/outputs/error_rates_separate.jpg")
@@ -127,7 +130,8 @@ plot_separate_combat <- pheatmap(mat = ct_separate_combat,
          legend = FALSE, 
          show_rownames = FALSE, 
          show_colnames = FALSE,
-         main = "Genera Abundances with Different Error Rates Learnt for Each Batch + ComBat")
+         #main = "Genera Abundances with Different Error Rates Learnt for Each Batch + ComBat"
+         )
 
 ggsave(plot = plot_separate_combat,
        filename = "batch_effects/outputs/error_rates_separate_and_combat.jpg")
